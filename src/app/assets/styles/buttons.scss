@@ -1,0 +1,21 @@
+.button {
+  font-family: inherit;
+
+  @apply py-1 px-4 font-medium text-lg rounded-lg border-2 border-solid border-transparent outline-0 bg-transparent transition-colors;
+
+  &.primary {
+    @apply bg-orange-500 text-white;
+
+    &:hover {
+      @apply bg-orange-600;
+    }
+
+    &:active {
+      @apply bg-orange-700;
+    }
+  }
+
+  &_icon {
+    @apply h-7 w-7 flex items-center justify-center border-0 outline-0 bg-transparent cursor-pointer;
+  }
+}

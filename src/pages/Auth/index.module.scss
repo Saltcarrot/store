@@ -1,0 +1,21 @@
+.page_wrapper {
+  @apply h-[100vh] w-[100vw] flex items-center justify-center;
+}
+
+.form {
+  @apply min-w-[400px] bg-white p-10 rounded-2xl;
+
+  &_title {
+    @apply mb-10 text-center;
+  }
+
+  &_content {
+    @apply mb-6;
+  }
+
+  &_bottom {
+    button {
+      @apply w-full;
+    }
+  }
+}

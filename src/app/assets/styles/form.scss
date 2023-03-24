@@ -1,0 +1,63 @@
+.input {
+  &_control {
+    &:has(+ .input_control) {
+      @apply mb-1;
+
+      &:has(.input_field:not(.invalid)) {
+        @apply mb-6;
+      }
+    }
+  }
+
+  &_wrapper {
+    @apply h-10 relative rounded-md border-2 border-solid border-indigo-300 transition-colors;
+
+    &:hover {
+      @apply border-indigo-400;
+    }
+
+    &:has(.input_field:focus) {
+      @apply border-blue-700;
+    }
+
+    &:has(.input_field.invalid) {
+      @apply border-red-500;
+
+      .input_label {
+        @apply text-red-500;
+      }
+    }
+  }
+
+  &_label {
+    @apply px-2 absolute bottom-7 left-2 bg-white text-slate-400;
+  }
+
+  &_field {
+    @apply h-full w-full px-2 text-base rounded-md border-0 outline-0 text-gray-700;
+
+    &::placeholder {
+      @apply text-indigo-900/30;
+    }
+
+    &.invalid {
+      @apply text-red-500;
+    }
+  }
+
+  &_error {
+    @apply block text-sm text-red-500 text-right;
+  }
+
+  &_password_wrapper {
+    @apply h-full w-full flex items-center;
+
+    .input_field {
+      @apply pr-1;
+    }
+
+    .button_icon {
+      @apply mr-2 flex-shrink-0 text-gray-700;
+    }
+  }
+}
