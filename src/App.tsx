@@ -1,10 +1,13 @@
 import { FC, StrictMode } from 'react'
-import Router from '../Router'
+import { BrowserRouter } from 'react-router-dom'
+import Router from './Router'
 
 const App: FC = () => {
   return (
     <StrictMode>
-      <Router />
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
     </StrictMode>
   )
 }

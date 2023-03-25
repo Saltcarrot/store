@@ -8,7 +8,7 @@ const Auth: FC = () => {
 
   const onAuthFormSubmitHandler = (data: IAuthForm) => {
     console.log(data)
-    // todo finally make requests to api
+    // todo: finally make requests to api
     reset()
   }
 

@@ -11,43 +11,38 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   mode,
-  entry: './src/index.tsx',
+  entry: path.resolve(__dirname, './src/index.tsx'),
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
-    assetModuleFilename: 'assets/[hash][ext]]',
+    path: path.resolve(__dirname, './dist'),
     clean: true,
   },
-  devtool: 'source-map',
   devServer: {
-    port: 3000,
-    hot: true,
     historyApiFallback: true,
+    hot: true,
+    port: 3000,
+    static: {
+      directory: path.resolve(__dirname, './dist'),
+    },
   },
   plugins: [
     new HTMLWebpackPlugin({
-      template: './src/index.html',
+      template: path.resolve(__dirname, './src/index.html'),
       filename: 'index.html',
-      minify: {
-        removeComments: mode === 'production',
-        collapseWhitespace: mode === 'production',
-      },
+      minify: mode === 'production',
     }),
     new MiniCssExtractPlugin({
       filename: 'style.css',
     }),
   ],
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
+  optimization: {
+    minimizer: [new CssMinimizerWebpackPlugin(), new TerserPlugin()],
+    minimize: mode === 'production',
+  },
   module: {
     rules: [
-      {
-        test: /\.(css|scss)$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          'sass-loader',
-        ],
-      },
       {
         test: /\.js?$/,
         exclude: /node_modules/,
@@ -69,17 +64,27 @@ module.exports = {
         },
       },
       {
-        test: /\.tsx?$/,
+        test: /\.(ts|tsx)?$/,
         exclude: /node_modules/,
-        loader: 'ts-loader',
+        use: ['ts-loader'],
+      },
+      {
+        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+        type: 'asset/inline',
+      },
+      {
+        test: /\.(css|scss)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
+        ],
       },
     ],
-  },
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-  },
-  optimization: {
-    minimizer: [new CssMinimizerWebpackPlugin(), new TerserPlugin()],
-    minimize: mode === 'production',
   },
 }

@@ -1,7 +1,7 @@
 .button {
   font-family: inherit;
 
-  @apply py-1 px-4 font-medium text-lg rounded-lg border-2 border-solid border-transparent outline-0 bg-transparent transition-colors;
+  @apply py-1 px-4 font-medium text-lg rounded-lg border-2 border-solid border-transparent outline-0 bg-transparent transition-colors cursor-pointer;
 
   &.primary {
     @apply bg-orange-500 text-white;
