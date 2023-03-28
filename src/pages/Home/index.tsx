@@ -1,13 +1,15 @@
 import { FC } from 'react'
-import { Link } from 'react-router-dom'
+import { useTypedActions } from '../../app/shared/hooks'
 
 const Home: FC = () => {
-  return (
-    <div>
-      Home page
-      <Link to='/auth'>To auth page</Link>
-    </div>
-  )
+	const { signOut } = useTypedActions()
+
+	return (
+		<div>
+			Home page
+			<button onClick={() => signOut()}>sign out</button>
+		</div>
+	)
 }
 
 export default Home
